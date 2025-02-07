@@ -8,7 +8,7 @@ function getQuantityOf(article) {
 
 }
 
-function withdrawQuantityOf(article) {
+function withdrawQuantityOf(article, quantity) {
 
 }
 
