@@ -1,7 +1,7 @@
 class Article {
-    constructor(name, quantity) {
+    constructor(name, stock) {
         this.name = name
-        this.quantity = quantity
+        this.stock = stock
     }
 }
 
