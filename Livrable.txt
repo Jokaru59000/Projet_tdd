@@ -53,8 +53,6 @@ En tant qu’utilisateur, je souhaite ajouter un article au stock :
     > Si la quantité à ajouter est de 0, j’obtiens un erreur
     > Si la quantité à ajouter est négative, j’obtiens une erreur
     > Si la quantité à ajouter est superieur à 0, la quantité est ajoutée au stock
-    > Si la quantité par ajout minimum d’un article est définie, la quantité ajoutée est un multiple de cette quantité minimum
-    > Si la quantité à ajouter dépasse le seuil max de stock, j’obtiens une erreur
 
 Consulter la quantité d’un article
 
