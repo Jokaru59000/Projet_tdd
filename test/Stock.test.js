@@ -8,32 +8,32 @@ const {
 
 describe("En tant qu’utilisateur, je souhaite ajouter un article au stock : ", () => {
     test("Si ce n’est pas un article, j’obtiens une erreur", () => {
-        let article = {name :"azerty", stock:123}
-        expect(()=>addArticle(article,1)).toThrow("Ce n'est pas un article.")
+        let article = { name: "azerty", stock: 123 }
+        expect(() => addArticle(article, 1)).toThrow("Ce n'est pas un article.")
     });
     test("Si la quantité à ajouter n’est pas défini, j'obtiens une erreur", () => {
         let article = new Article("Planche", 1)
-        expect(()=>addArticle(article,undefined)).toThrow("La quantité à ajouter à ajouter n'est pas définie.")
+        expect(() => addArticle(article, undefined)).toThrow("La quantité à ajouter à ajouter n'est pas définie.")
     })
     test("Si la quantité à ajouter n’est pas un nombre, j’obtiens une erreur", () => {
-        let article = new Article("Livre",10)
-        expect(()=>addArticle(article,"A")).toThrow("La quantité à ajouter doit être un nombre.")
+        let article = new Article("Livre", 10)
+        expect(() => addArticle(article, "A")).toThrow("La quantité à ajouter doit être un nombre.")
     })
     test("Si la quantité à ajouter n’est pas un entier, j’obtiens une erreur", () => {
-        let article = new Article("Livre",10)
-        expect(()=>addArticle(article,1.5)).toThrow("La quantité à ajouter doit être un entier.")
+        let article = new Article("Livre", 10)
+        expect(() => addArticle(article, 1.5)).toThrow("La quantité à ajouter doit être un entier.")
     })
     test("Si la quantité à ajouter est de 0, j’obtiens un erreur", () => {
-        let article = new Article("Livre",10)
-        expect(()=>addArticle(article,0)).toThrow("La quantité à ajouter doit être supérieur à 0.")
+        let article = new Article("Livre", 10)
+        expect(() => addArticle(article, 0)).toThrow("La quantité à ajouter doit être supérieur à 0.")
     })
     test("Si la quantité à ajouter est négative, j’obtiens une erreur", () => {
-        let article = new Article("Livre",10)
-        expect(()=>addArticle(article,-8)).toThrow("La quantité à ajouter doit être une valeure entière et positive")
+        let article = new Article("Livre", 10)
+        expect(() => addArticle(article, -8)).toThrow("La quantité à ajouter doit être une valeure entière et positive")
     })
     test("Si la quantité à ajouter est superieur à 0, la quantité est ajoutée au stock", () => {
-        let article = new Article("Livre",10)
-        expect(addArticle(article,5)).toEqual(new Article("Livre",15))
+        let article = new Article("Livre", 10)
+        expect(addArticle(article, 5)).toEqual(new Article("Livre", 15))
     })
 
 })
@@ -63,11 +63,12 @@ describe("En tant qu’utilisateur, je souhaite retirer une quantité donnée su
     })
     test("Si la quantité à retirer n'est pas un entier, j’obtiens une erreur", () => {
         let article = new Article("pomme", 15)
-        expect(() => withdrawQuantityOf(article, 1.5)).toThrow("Impossible de retirer 0")
+        expect(() => withdrawQuantityOf(article, 1.5)).toThrow("La quantité à ajouter doit être un nombre entier")
     })
+
     test("Si la quantité à retirer est inférieur au stock, je retire la quantité au stock", () => {
         let article = new Article("pomme", 15)
-        expect(withdrawQuantityOf(article, 5)).toBe(new Article("pomme", 10))
+        expect(withdrawQuantityOf(article, 5).stock).toBe(10)
     })
 
 })
@@ -82,6 +83,10 @@ describe("En tant qu’utilisateur, je souhaite obtenir un rapport sur les stock
     })
     test("Si la liste contient des articles, afficher le nom et la quantité de chaque article ", () => {
         let lstArticle = [new Article("pomme", 15), new Article("poire", 10)]
-        expect(getReport(lstArticle)).toMatch("/pomme 15; poire 10 /")
+        expect(getReport(lstArticle)).toMatch("/pomme 15; poire 10; /")
+    })
+    test("Si la quantité d’un article est inférieur ou égale au seuil, afficher une alerte", () => {
+        let lstArticle = [new Article("pomme", 15), new Article("poire", 8)]
+        expect(getReport(lstArticle)).toMatch("/pomme 15; poire 10; !Stock bientot vide!/")
     })
 })

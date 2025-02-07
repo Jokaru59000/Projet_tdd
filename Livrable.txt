@@ -70,6 +70,7 @@ En tant qu’utilisateur, je souhaite retirer un article au stock :
     > Si la quantité à retirer est inférieur au stock, je retire la quantité au stock
     > Si la quantité à retirer est de 0, j’obtiens une erreur
     > Si la quantité à retirer n'est pas un entier, j’obtiens une erreur
+
 Obtenir un rapport des stocks restants 
 
 En tant qu’utilisateur, je souhaite obtenir un rapport sur les stocks restants : 
