@@ -58,7 +58,6 @@ Consulter la quantité d’un article
 
 En tant qu’utilisateur, je souhaite consulter la quantité d’un article : 
     > Si l’élément demandé n’est pas un article, j’obtiens une erreur
-    > Si l’article n’existe pas dans le stock, j’obtiens une erreur
     > Si l’élément demandé est un article,  j’obtiens la quantité de l’article
 
 Retirer des articles du stock 
