@@ -1,5 +1,17 @@
 {
   "dependencies": {
     "jest": "^29.7.0"
-  }
+  },
+  "name": "projet_tdd",
+  "version": "1.0.0",
+  "description": "Dépôt pour le code sur le projet TDD",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }
