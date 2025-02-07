@@ -39,7 +39,15 @@ describe("En tant qu’utilisateur, je souhaite ajouter un article au stock : ",
 })
 
 describe("En tant qu’utilisateur, je souhaite consulter la quantité d’un article : ", () => {
+    test("Si l’élément demandé n’est pas un article, j’obtiens une erreur", () => {
+        let article = {name :"azerty", stock:123}
+        expect(()=>getQuantityOf(article,1)).toThrow("L'article demandé n'est pas un article.")
+    });
 
+    test("Si l’élément demandé n’est pas un article, j’obtiens une erreur", () => {
+        let article = new Article("Livre",10)
+        expect(getQuantityOf("Livre")).toEqual(10)
+    });
 })
 
 describe("En tant qu’utilisateur, je souhaite retirer une quantité donnée sur un stock : ", () => {

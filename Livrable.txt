@@ -58,7 +58,6 @@ Consulter la quantité d’un article
 
 En tant qu’utilisateur, je souhaite consulter la quantité d’un article : 
     > Si l’élément demandé n’est pas un article, j’obtiens une erreur
-    > Si l’article n’existe pas dans le stock, j’obtiens une erreur
     > Si l’élément demandé est un article,  j’obtiens la quantité de l’article
 
 Retirer des articles du stock 
@@ -70,6 +69,7 @@ En tant qu’utilisateur, je souhaite retirer un article au stock :
     > Si la quantité à retirer est inférieur au stock, je retire la quantité au stock
     > Si la quantité à retirer est de 0, j’obtiens une erreur
     > Si la quantité à retirer n'est pas un entier, j’obtiens une erreur
+
 Obtenir un rapport des stocks restants 
 
 En tant qu’utilisateur, je souhaite obtenir un rapport sur les stocks restants : 
