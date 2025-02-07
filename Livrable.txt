@@ -1,1 +1,42 @@
 Groupe composé de Cédric Popille et Arnaud Madou.
+
+Question posées : 
+
+Quelle cible ? 
+    > Peu importe.
+
+Quel type de produit ? (Produit frais / sec ) ?
+    > Peu importe pour le moment.
+
+Comment est représenté un article ? 
+    > Un article est représenté par un nom et une quantité.
+
+Un ou plusieurs endroits de stockage ?
+    > Un seul endroit de stockage.
+
+Est-ce qu’il faut ajouter une disponibilité sur un article ? 
+    > Pas besoin de statut.
+
+Peut on ajouter une quantité supérieur à 1 en une seule fois sur un produit donné ?
+    > Pas de contrainte quant à la quantité d'un article.
+
+Pour l’identifiant de l’article, préférez-vous un identifiant numérique ou alphanumérique ? 
+    > Pas besoin d’identifiant.
+
+Quel format prend le rapport ? 
+    > Une sortie simple composée d'un nom et d'une quantité.
+
+Quels éléments inclure ? 
+    > Tous les éléments sont à inclure, sans filtre, avec une alerte si le seuil est inférieur au seuil critique ou si le stock est à 0.
+
+Limite sur la quantité, min/max ?
+    > Pas de maximum, seuil minimum à définir.
+
+Quel est le seuil minimum de quantité en stock pour un article ?
+    > Le seuil est défini par nos soins.
+
+Quelles tâches sont à automatiser ? (ajout/retrait ?)
+    > Tout ce qu'on fait doit être automatisé.
+
+Auriez vous oublié des éléments pendant l’appel d'offres ? 
+    > Non, vous avez presque tout.
