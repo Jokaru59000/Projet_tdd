@@ -74,6 +74,6 @@ Obtenir un rapport des stocks restants
 
 En tant qu’utilisateur, je souhaite obtenir un rapport sur les stocks restants : 
     > Si aucune liste d’article n’est fournie, j’obtiens une erreur
-    > Si la liste d’article est vide, j’obtiens une erreur
+    > Si la liste d’article est vide ou négative, j’obtiens une erreur
     > Si la liste n’est pas vide, afficher le nom et la quantité de chaque article 
     > Si la quantité d’un article est inférieur ou égale au seuil, afficher une alerte

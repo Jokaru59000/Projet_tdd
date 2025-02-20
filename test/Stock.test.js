@@ -60,7 +60,7 @@ describe("En tant qu’utilisateur, je souhaite retirer une quantité donnée su
     })
     test("Si la quantité à retirer est négative, j’obtiens une erreur", () => {
         let article = new Article("pomme", 15)
-        expect(() => withdrawQuantityOf(article, -10)).toThrow("Impossible de retirer une quantité négative")
+        expect(() => withdrawQuantityOf(article, -10)).toThrow("Impossible de retirer 0 ou moins article")
     })
     test("Si la quantité à retirer est de 0, j’obtiens une erreur", () => {
         let article = new Article("pomme", 15)
@@ -79,19 +79,24 @@ describe("En tant qu’utilisateur, je souhaite retirer une quantité donnée su
 })
 describe("En tant qu’utilisateur, je souhaite obtenir un rapport sur les stocks restants : ", () => {
     test("Si aucune liste d’article n’est fournie, j’obtiens une erreur", () => {
-        let lstArticle = []
-        expect(() => getReport("fe,v")).toThrow("Un liste d'article est attendu")
+        let lstArticle = ["ee", "eff"]
+        expect(() => getReport(lstArticle)).toThrow("Une liste d'article est attendu")
+
+        expect(() => getReport("fe,v")).toThrow("Une liste d'article est attendu")
     })
-    test("Si aucune liste d’article n’est fournie, j’obtiens une erreur", () => {
+    test("Si la liste d’article contient 0 ou moins articles, j’obtiens une erreur", () => {
         let lstArticle = []
-        expect(() => getReport(lstArticle)).toThrow("Un liste est vide")
+        expect(() => getReport(lstArticle)).toThrow("Au moins un article est attendu")
     })
     test("Si la liste contient des articles, afficher le nom et la quantité de chaque article ", () => {
         let lstArticle = [new Article("pomme", 15), new Article("poire", 10)]
-        expect(getReport(lstArticle)).toMatch("/pomme 15; poire 10; /")
+        expect(getReport(lstArticle)).toMatch("pomme 15; poire 10;")
     })
     test("Si la quantité d’un article est inférieur ou égale au seuil, afficher une alerte", () => {
-        let lstArticle = [new Article("pomme", 15), new Article("poire", 8)]
-        expect(getReport(lstArticle)).toMatch("/pomme 15; poire 10; !Stock bientot vide!/")
+        let lstArticle = [new Article("pomme", 15), new Article("poire", 3)]
+        expect(getReport(lstArticle)).toMatch(`pomme 15; poire 3 /!\\ Stock bientot vide/!\\;`)
+
+        let lstArticle2 = [new Article("pomme", 15), new Article("poire", 5)]
+        expect(getReport(lstArticle2)).toMatch(`pomme 15; poire 5 /!\\ Stock bientot vide/!\\;`)
     })
 })
