@@ -137,7 +137,7 @@ describe("En tant qu'utilisateur, je souhaite recevoir une alerte quand un artic
 
 describe("En tant qu’utilisateur, je souhaite pouvoir avoir un historique des mouvements des articles : ", () => {
     test("Si l'article n'est pas défini, j'obtiens une erreur", async () => {
-        expect(() => addHistory({ name: "ofje", stock: 15 }, 12)).rejects.toThrow("Un article est attendu")
+        await expect(() => addHistory({ name: "ofje", stock: 15 }, 12)).rejects.toThrow("Un article est attendu")
     })
     test("Si le nom ou la quantité d'un article est manquant, j'obtiens un erreur", async () => {
         const article = new Article("", 15)
@@ -149,6 +149,6 @@ describe("En tant qu’utilisateur, je souhaite pouvoir avoir un historique des 
     test("Si l'application n'a pas de droit en écriture sur le systeme, j'obtiens une erreur", async () => {
         const article = new Article("Livre", 20)
 
-        await expect(() => addHistory(article, 10)).toThrow('Impossible de créer un fichier')
+        await expect(() => addHistory(article, 10)).toThrow("L'application ne possède pas les droits de création")
     })
 })

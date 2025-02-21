@@ -103,7 +103,7 @@ async function addHistory(article, qte) {
     if (!(article instanceof Article)) {
         throw new Error("Un article est attendu")
     }
-    if (typeof article.nom != 'string' || article.nom.length === 0 || article.quantity <= 0) {
+    if ((typeof article.nom != 'string') || article.nom.length === 0) {
         throw new Error("Il faut renseigner le nom et la quantité de l'article.")
     }
     try {
@@ -111,7 +111,7 @@ async function addHistory(article, qte) {
             await fs.mkdir("/history/hisoty.csv")
 
             if (! await fs.exist("/history/hisoty.csv")) {
-                throw new Error("L'application ne possède pas les droits")
+                throw new Error("L'application ne possède pas les droits de création")
             }
         }
         const fichier = await fs.open("/history/hisoty.csv", "a")
