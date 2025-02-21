@@ -21,8 +21,14 @@ function addArticle(article, quantity) {
     return article;
 }
 
-function getQuantityOf(article) {
-
+function getQuantityOf(article,id) {
+    if(!(article instanceof Article)){
+        throw new Error("L'article demandé n'est pas un article.")
+    }
+    if (article instanceof Article){
+        return article.stock
+    }
+    return article.stock;
 }
 
 function withdrawQuantityOf(article, quantity) {

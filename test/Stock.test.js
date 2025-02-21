@@ -41,9 +41,9 @@ describe("En tant qu’utilisateur, je souhaite consulter la quantité d’un ar
         expect(() => getQuantityOf(article, 1)).toThrow("L'article demandé n'est pas un article.")
     });
 
-    test("Si l’élément demandé n’est pas un article, j’obtiens une erreur", () => {
+    test("Si l’élément demandé est un article, j’obtiens la quantité de l'article", () => {
         let article = new Article("Livre", 10)
-        expect(getQuantityOf("Livre")).toEqual(10)
+        expect(getQuantityOf(article)).toEqual(10)
     });
 })
 
