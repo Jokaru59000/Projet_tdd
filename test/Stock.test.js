@@ -135,3 +135,11 @@ describe("En tant qu'utilisateur, je souhaite recevoir une alerte quand un artic
         expect(result).toMatch(`/!\\ Stock bientot vide/!\\;`)
     })
 })
+
+describe("En tant qu’utilisateur, je souhaite pouvoir avoir un historique des mouvements des articles : ", () => {
+    test("Si le nom ou la quantité d'un article est manquant, j'obtiens un erreur",() =>{
+        expect(() => new Article("",15)).toThrow("Il faut renseigner le nom et la quantité de l'article.");
+        expect(() => new Article("Livre")).toThrow("Il faut renseigner le nom et la quantité de l'article.");
+    })
+    test("Si la date est manquante, j'obtiens une erreur ")
+})

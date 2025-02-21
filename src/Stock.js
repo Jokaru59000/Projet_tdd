@@ -1,4 +1,5 @@
 const Article = require("../src/Article")
+const fs = require("fs/promises")
 
 function addArticle(article, quantity) {
     if (!(article instanceof Article)) {

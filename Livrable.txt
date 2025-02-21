@@ -78,10 +78,10 @@ En tant qu’utilisateur, je souhaite obtenir un rapport sur les stocks restants
     > Si la liste n’est pas vide, afficher le nom et la quantité de chaque article 
     > Si la quantité d’un article est inférieur ou égale au seuil, afficher une alerte
 
+Ajout d'historique
 
 En tant qu'utilisateur, je souhaite pouvoir avoir un historique des mouvements des articles : 
     > Si le nom ou la quantité d'un article est manquant, j'obtiens un erreur
-    > Si la date est manquante, j'obtiens une erreur
     Ca depend de comment enregistrer l'info
     Si fichier externe :
         > Si l'application n'a pas de droit en écriture sur le systeme, j'obtiens une erreur
@@ -92,6 +92,8 @@ En tant qu'utilisateur, je souhaite pouvoir avoir un historique des mouvements d
         	> Si un historique est fourni et que le nom, la quantité du produit et la date sont accessible, un mouvement (date, article.nom, qtAjouté/qtRetiré, nouveauStock) est ajouté à l'histique global
 				Si les mouvement sont enregistré individuellement pour chaque article (dans la class) : 
         	> Si un historique est fourni et que le nom, la quantité du produit et la date sont accessible, un mouvement (date, qtAjouté/qtRetiré)est ajouté à l'histique de l'article
+
+Recevoir une alerte
 
 En tant qu'utilisateur, je souhaite recevoir une alerte quand un article atteint un certain seuil après un mouvement : 
 	> Si le seuil n'est pas défini, définir un seuil automatique
