@@ -83,20 +83,14 @@ En tant qu'utilisateur, je souhaite pouvoir avoir un historique des mouvements d
     > Si le nom ou la quantité d'un article est manquant, j'obtiens un erreur
     > Si la date est manquante, j'obtiens une erreur
     Ca depend de comment enregistrer l'info
-    Si fichier externe :
-        > Si l'application n'a pas de droit en écriture sur le systeme, j'obtiens une erreur
-        > Si l'application à les droit et que le nom, la quantité du produit et la date sont accessible, un mouvement (date, article.nom, qtAjouté/qtRetiré, nouveauStock) est ajouté à l'historique
-    Si enregistrement dans une variable : 
-        > Si aucun historique est fourni, j'obtiens une erreur
-        Si un fichier qui regroupe toutes les transactions : 
-        	> Si un historique est fourni et que le nom, la quantité du produit et la date sont accessible, un mouvement (date, article.nom, qtAjouté/qtRetiré, nouveauStock) est ajouté à l'histique global
-				Si les mouvement sont enregistré individuellement pour chaque article (dans la class) : 
-        	> Si un historique est fourni et que le nom, la quantité du produit et la date sont accessible, un mouvement (date, qtAjouté/qtRetiré)est ajouté à l'histique de l'article
+    > Si l'application n'a pas de droit en écriture sur le systeme, j'obtiens uneerreur
+    > Si l'application à les droit et que le nom, la quantité du produit et ladate sont accessible, un mouvement (date, article.nom, qtAjouté/qtRetiré,nouveauStock) est ajouté à l'historique
+
 
 En tant qu'utilisateur, je souhaite recevoir une alerte quand un article atteint un certain seuil après un mouvement : 
-	> Si le seuil n'est pas défini, définir un seuil automatique
-    > Si le seuil est négatif, définir un seuil positif automatique
-    //> Si la quantité de l'article n'est pas défini, j'obtiens une erreur
-    > Si le seuil de l'article n'est pas atteint, j'obtiens rien // Jsp si on peut tester "rien"
-    > Si le seuil de l'article est atteint, j'affiche un warning, ou ? dans l'historique ? en console ? 
+	> Si le seuil n'est pas défini, j'obtiens une erreur
+    > Si l'article n'est pas défini, j'obtiens une erreur
+    > Si le seuil est négatif, j'obtiens une erreur
+    > Si le seuil de l'article n'est pas atteint, rien ne se passe
+    > Si le seuil de l'article est atteint, j'affiche un warning 
  

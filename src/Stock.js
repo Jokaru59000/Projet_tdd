@@ -1,5 +1,5 @@
 const Article = require("../src/Article")
-
+const fs = require("fs/promises")
 function addArticle(article, quantity) {
     if (!(article instanceof Article)) {
         throw new Error("Ce n'est pas un article.")
@@ -19,7 +19,6 @@ function addArticle(article, quantity) {
         article.stock = quantity + article.stock
     }
 
-    const warning = setWarning(article)
     // const history  = addHistory(article) //! Les params vont dépendre du retour rdv
     return article;
 }
@@ -52,6 +51,12 @@ function withdrawQuantityOf(article, quantity) {
     }
 
     article.stock = article.stock - quantity
+    try {
+        const warning = setWarning(article, 10)
+        console.log(warning)
+    } catch (e) {
+        console.log(e.message)
+    }
     return article
 }
 
@@ -75,16 +80,19 @@ function getReport(lstArticle) {
 }
 
 function setWarning(article, threshold) {
-    if (typeof threshold != "number") {
-        throw new Error("Le seuil doit être un nombre")
+    if (typeof threshold != "number" || threshold == 'undefined') {
+        throw new Error("Un seuil est attendu")
+    }
+    if (!(article instanceof Article)) {
+        throw new Error("Un article est attendu")
     }
     if (threshold <= 0) {
-        throw new Error("Le seuil doit être  positif")
-    }
-    if (threshold == 'undefined') {
         throw new Error("Le seuil doit être positif")
     }
-    if (article.stock <= article.threshold) {
+    if (threshold == 'undefined') {
+        throw new Error("Un seuil est attendu")
+    }
+    if (article.stock <= threshold) {
         return "/!\\ Stock bientot vide/!\\;"
     }
     return ""
