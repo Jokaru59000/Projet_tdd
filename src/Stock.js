@@ -19,8 +19,6 @@ function addArticle(article, quantity) {
     if (quantity > 0) {
         article.stock = quantity + article.stock
     }
-
-    // const history  = addHistory(article) //! Les params vont dépendre du retour rdv
     return article;
 }
 
@@ -100,7 +98,7 @@ function setWarning(article, threshold) {
 }
 
 async function addHistory(article, qte) {
-    if (!(article instanceof Article)) {
+    if (!(article instanceof Article)) { 
         throw new Error("Un article est attendu")
     }
 
