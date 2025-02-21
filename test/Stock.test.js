@@ -141,5 +141,4 @@ describe("En tant qu’utilisateur, je souhaite pouvoir avoir un historique des 
         expect(() => new Article("",15)).toThrow("Il faut renseigner le nom et la quantité de l'article.");
         expect(() => new Article("Livre")).toThrow("Il faut renseigner le nom et la quantité de l'article.");
     })
-    test("Si la date est manquante, j'obtiens une erreur ")
 })
