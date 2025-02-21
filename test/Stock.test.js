@@ -3,7 +3,8 @@ const {
     addArticle,
     getQuantityOf,
     withdrawQuantityOf,
-    getReport
+    getReport,
+    setWarning
 } = require("../src/Stock")
 
 describe("En tant qu’utilisateur, je souhaite ajouter un article au stock : ", () => {
@@ -98,5 +99,39 @@ describe("En tant qu’utilisateur, je souhaite obtenir un rapport sur les stock
 
         let lstArticle2 = [new Article("pomme", 15), new Article("poire", 5)]
         expect(getReport(lstArticle2)).toMatch(`pomme 15; poire 5 /!\\ Stock bientot vide/!\\;`)
+    })
+})
+
+describe("En tant qu'utilisateur, je souhaite recevoir une alerte quand un article atteint un certain seuil après un mouvement", () => {
+    test("Si le seuil n'est pas défini, définir un seuil automatique", () => {
+        let article = new Article("poire", 5)
+        result = setWarning(article, 5)
+        expect(result).toMatch(`/!\\ Stock bientot vide/!\\;`)
+
+        let article2 = new Article("poire", 6)
+        result2 = setWarning(article, 5)
+        expect(result2).toMatch(``)
+    })
+
+    test("Si le seuil est négatif, définir un seuil positif automatique", () => {
+        let article = new Article("poire", 6, -5)
+        result2 = setWarning(article, -10)
+        expect(() => result2).toThrow("Le seuil doit être positif")
+    })
+
+    test("Si le seuil de l'article n'est pas atteint, j'obtiens rien", () => {
+        let article = new Article("poire", 30, 16)
+        result = setWarning(article)
+        expect(result).toMatch(``)
+    })
+
+    // test("Si la quantité de l'article n'est pas défini, j'obtiens une erreur", () => {
+    //     let article = new Article("poire", 15)
+    //     expect(article.threshold).toBe(5)
+    // })
+    test("Si le seuil de l'article est atteint, j'affiche un warning,", () => {
+        let article = new Article("poire", 15, 15)
+        result = setWarning(article)
+        expect(result).toMatch(`/!\\ Stock bientot vide/!\\;`)
     })
 })

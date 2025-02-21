@@ -18,14 +18,17 @@ function addArticle(article, quantity) {
     if (quantity > 0) {
         article.stock = quantity + article.stock
     }
+
+    const warning = setWarning(article)
+    // const history  = addHistory(article) //! Les params vont dépendre du retour rdv
     return article;
 }
 
-function getQuantityOf(article,id) {
-    if(!(article instanceof Article)){
+function getQuantityOf(article, id) {
+    if (!(article instanceof Article)) {
         throw new Error("L'article demandé n'est pas un article.")
     }
-    if (article instanceof Article){
+    if (article instanceof Article) {
         return article.stock
     }
     return article.stock;
@@ -71,9 +74,25 @@ function getReport(lstArticle) {
     return report
 }
 
+function setWarning(article, threshold) {
+    if (typeof threshold != "number") {
+        throw new Error("Le seuil doit être un nombre")
+    }
+    if (threshold <= 0) {
+        throw new Error("Le seuil doit être  positif")
+    }
+    if (threshold == 'undefined') {
+        throw new Error("Le seuil doit être positif")
+    }
+    if (article.stock <= article.threshold) {
+        return "/!\\ Stock bientot vide/!\\;"
+    }
+    return ""
+}
 module.exports = {
     addArticle,
     getQuantityOf,
     withdrawQuantityOf,
-    getReport
+    getReport,
+    setWarning
 }
