@@ -136,10 +136,19 @@ describe("En tant qu'utilisateur, je souhaite recevoir une alerte quand un artic
 })
 
 describe("En tant qu’utilisateur, je souhaite pouvoir avoir un historique des mouvements des articles : ", () => {
-    test("Si le nom ou la quantité d'un article est manquant, j'obtiens un erreur",() =>{
-    	const article = new Article("",15)
+    test("Si l'article n'est pas défini, j'obtiens une erreur", async () => {
+        expect(() => addHistory({ name: "ofje", stock: 15 }, 12)).rejects.toThrow("Un article est attendu")
+    })
+    test("Si le nom ou la quantité d'un article est manquant, j'obtiens un erreur", async () => {
+        const article = new Article("", 15)
         const article2 = new Article("Livre")
-        expect(() => addHistory(article)).toThrow("Il faut renseigner le nom et la quantité de l'article.");
-        expect(() => addHistory(article2)).toThrow("Il faut renseigner le nom et la quantité de l'article.");
+        await expect(() => addHistory(article)).rejects.toThrow("Il faut renseigner le nom et la quantité de l'article.");
+        await expect(() => addHistory(article2)).rejects.toThrow("Il faut renseigner le nom et la quantité de l'article.");
+    })
+
+    test("Si l'application n'a pas de droit en écriture sur le systeme, j'obtiens une erreur", async () => {
+        const article = new Article("Livre", 20)
+
+        await expect(() => addHistory(article, 10)).toThrow('Impossible de créer un fichier')
     })
 })

@@ -99,11 +99,25 @@ function setWarning(article, threshold) {
     return ""
 }
 
-function addHistory(article){
-	if(typeof article.nom != 'string' || article.nom.length===0 || article.quantity <= 0) {// length ?size je sais plus
-		throw new Error("Il faut renseigner le nom et la quantité de l'article.")
-  }
-  //La suite ...
+async function addHistory(article, qte) {
+    if (!(article instanceof Article)) {
+        throw new Error("Un article est attendu")
+    }
+    if (typeof article.nom != 'string' || article.nom.length === 0 || article.quantity <= 0) {
+        throw new Error("Il faut renseigner le nom et la quantité de l'article.")
+    }
+    try {
+        if (! await fs.exist("/history/hisoty.csv")) {
+            await fs.mkdir("/history/hisoty.csv")
+
+            if (! await fs.exist("/history/hisoty.csv")) {
+                throw new Error("L'application ne possède pas les droits")
+            }
+        }
+        const fichier = await fs.open("/history/hisoty.csv", "a")
+        await fichier.write("test")
+
+    } catch (e) { throw Error(tonerreur) }
 }
 module.exports = {
     addArticle,
