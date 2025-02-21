@@ -103,21 +103,29 @@ async function addHistory(article, qte) {
     if (!(article instanceof Article)) {
         throw new Error("Un article est attendu")
     }
-    if ((typeof article.nom != 'string') || article.nom.length === 0) {
+
+    if (!article.name || typeof article.name !== 'string' || article.name.length === 0) {
         throw new Error("Il faut renseigner le nom et la quantité de l'article.")
     }
+
+    if (typeof qte !== 'number' || qte === undefined) {
+        throw new Error("Il faut renseigner le nom et la quantité de l'article.")
+    }
+
     try {
-        if (! await fs.exist("/history/hisoty.csv")) {
-            await fs.mkdir("/history/hisoty.csv")
-
-            if (! await fs.exist("/history/hisoty.csv")) {
-                throw new Error("L'application ne possède pas les droits de création")
-            }
+        try {
+            await fs.access("/history")
+        } catch {
+            await fs.mkdir("/history")
         }
-        const fichier = await fs.open("/history/hisoty.csv", "a")
-        await fichier.write("test")
 
-    } catch (e) { throw Error(tonerreur) }
+        const fichier = await fs.open("/history/history.csv", "a")
+        await fichier.write(`${article.name},${qte},${new Date().toISOString()}\n`)
+        await fichier.close()
+
+    } catch (e) {
+        throw new Error(e.message)
+    }
 }
 module.exports = {
     addArticle,

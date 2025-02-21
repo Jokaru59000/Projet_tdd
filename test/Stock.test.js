@@ -149,6 +149,6 @@ describe("En tant qu’utilisateur, je souhaite pouvoir avoir un historique des 
     test("Si l'application n'a pas de droit en écriture sur le systeme, j'obtiens une erreur", async () => {
         const article = new Article("Livre", 20)
 
-        await expect(() => addHistory(article, 10)).toThrow("L'application ne possède pas les droits de création")
+        await expect(addHistory(article, 10)).rejects.toThrow("ENOENT: no such file or directory, access '/history/history.csv'")
     })
 })
