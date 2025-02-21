@@ -1,5 +1,6 @@
 const Article = require("../src/Article")
 const fs = require("fs/promises")
+
 function addArticle(article, quantity) {
     if (!(article instanceof Article)) {
         throw new Error("Ce n'est pas un article.")
@@ -97,10 +98,18 @@ function setWarning(article, threshold) {
     }
     return ""
 }
+
+function addHistory(article){
+	if(typeof article.nom != 'string' || article.nom.length===0 || article.quantity <= 0) {// length ?size je sais plus
+		throw new Error("Il faut renseigner le nom et la quantité de l'article.")
+  }
+  //La suite ...
+}
 module.exports = {
     addArticle,
     getQuantityOf,
     withdrawQuantityOf,
     getReport,
-    setWarning
+    setWarning,
+    addHistory
 }

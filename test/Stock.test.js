@@ -4,7 +4,8 @@ const {
     getQuantityOf,
     withdrawQuantityOf,
     getReport,
-    setWarning
+    setWarning,
+    addHistory
 } = require("../src/Stock")
 
 describe("En tant qu’utilisateur, je souhaite ajouter un article au stock : ", () => {
@@ -136,7 +137,9 @@ describe("En tant qu'utilisateur, je souhaite recevoir une alerte quand un artic
 
 describe("En tant qu’utilisateur, je souhaite pouvoir avoir un historique des mouvements des articles : ", () => {
     test("Si le nom ou la quantité d'un article est manquant, j'obtiens un erreur",() =>{
-        expect(() => new Article("",15)).toThrow("Il faut renseigner le nom et la quantité de l'article.");
-        expect(() => new Article("Livre")).toThrow("Il faut renseigner le nom et la quantité de l'article.");
+    	const article = new Article("",15)
+        const article2 = new Article("Livre")
+        expect(() => addHistory(article)).toThrow("Il faut renseigner le nom et la quantité de l'article.");
+        expect(() => addHistory(article2)).toThrow("Il faut renseigner le nom et la quantité de l'article.");
     })
 })
